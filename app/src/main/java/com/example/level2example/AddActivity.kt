@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 
 import kotlinx.android.synthetic.main.activity_add.*
@@ -24,11 +23,12 @@ class AddActivity : AppCompatActivity() {
 
     private fun initViews() {
         fab.setOnClickListener { onSaveClick() }
+        supportActionBar?.title = "Student Portal"
     }
 
     private fun onSaveClick() {
-        if (etAddReminder.text.toString().isNotBlank()) {
-            val reminder = Reminder(etAddReminder.text.toString())
+        if (etAddTitle.text.toString().isNotBlank() && etAddUrl.text.toString().isNotBlank()) {
+            val reminder = Reminder(etAddTitle.text.toString() + "\n" + etAddUrl.text.toString())
             val resultIntent = Intent()
             resultIntent.putExtra(EXTRA_REMINDER, reminder)
             setResult(Activity.RESULT_OK, resultIntent)

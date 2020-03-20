@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         rvReminders.adapter = reminderAdapter
         rvReminders.addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
         createItemTouchHelper().attachToRecyclerView(rvReminders)
+        supportActionBar?.title = "Student Portal"
     }
 
 
