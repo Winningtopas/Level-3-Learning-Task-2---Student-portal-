@@ -5,5 +5,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Reminder(
-    var reminderText: String
+    var reminderText: String,
+    var url: String
 ) : Parcelable

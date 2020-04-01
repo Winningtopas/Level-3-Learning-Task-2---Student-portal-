@@ -1,19 +1,26 @@
 package com.example.level2example
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.level2example.Reminder
 import kotlinx.android.synthetic.main.item_reminder.view.*
 
-class ReminderAdapter(private val reminders: List<Reminder>) : RecyclerView.Adapter<ReminderAdapter.ViewHolder>() {
+//class ReminderAdapter(private val reminders: List<Reminder>) : RecyclerView.Adapter<ReminderAdapter.ViewHolder>() {
+class ReminderAdapter(private val reminders: List<Reminder>, private val clickListener: (Reminder) -> Unit) : RecyclerView.Adapter<ReminderAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(reminder: Reminder) {
-            itemView.tvReminder.text = reminder.reminderText
+        fun bind(reminder: Reminder,clickListener: (Reminder) -> Unit) {
+            //itemView.tvReminder.text = reminder.reminderText + reminder.url
+            itemView.tvReminder.text = itemView.context.getString(R.string.display_portal, reminder.reminderText, reminder.url)
+            itemView.setOnClickListener { clickListener(reminder)}
+
         }
     }
 
@@ -37,8 +44,11 @@ class ReminderAdapter(private val reminders: List<Reminder>) : RecyclerView.Adap
      * Called by RecyclerView to display the data at the specified position.
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(reminders[position])
+        holder.bind(reminders[position],clickListener)
     }
+
+
+
 
 
 }

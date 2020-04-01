@@ -35,7 +35,7 @@ class AddActivity : AppCompatActivity() {
 
     private fun onSaveClick() {
         if (etAddTitle.text.toString().isNotBlank() && etAddUrl.text.toString().isNotBlank()) {
-            val reminder = Reminder(etAddTitle.text.toString() + "\n" + etAddUrl.text.toString())
+            val reminder = Reminder(etAddTitle.text.toString() + "\n", etAddUrl.text.toString())
             val resultIntent = Intent()
             resultIntent.putExtra(EXTRA_REMINDER, reminder)
             setResult(Activity.RESULT_OK, resultIntent)
